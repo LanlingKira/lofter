@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Lofter(乐乎)原图查看下载
 // @namespace    LofterSpider
-// @version      0.1
+// @version      0.1.1
 // @description  下载lofter上的超清原图，prprprpr
 // @author       兰陵
-// @match        http://*.lofter.com/post/*
+// @match        http*://*.lofter.com/post/*
 // @run-at       document-end
 // @grant        GM_xmlhttpRequest
 // @connect      *
@@ -14,7 +14,7 @@
     var css = document.createElement("style");
     css.type = "text/css";
     css.id = "spidercss";
-    var cssText = "#lofterspider{position:fixed;top:0;left:50%;width:100%;height:100%;background:rgba(229,229,229,.95);padding:0;margin:0 auto;font-size:16px;-webkit-transform:translateX(-50%);transform:translateX(-50%);z-index:9999999999999}#lofterspider p:first-child{position:absolute;left:0;top:0;width:100%;padding:10px;background:#fff;box-shadow:0 0 4px rgba(0,0,0,.2);text-align:center;font-size:1.5em;color:#555}#spiderclose{position:absolute;right:12px;padding:10px 0 10px 16px;font-size:1.5em;border-left:1px solid #555;font-weight:700;color:#555}#lofterspider ul{position:relative;top:15%}#lofterspider ul li{width:20%;text-align:center;float:left;padding-bottom:5px}#lofterspider ul li img{width:90%}#lofterspider ul li img:hover{opacity:.6}#lofterspider ul li p{color:#555}#lofterspider ul li p a{margin:auto 10px;color:#673ab7}#spiderboprt{position:fixed;top:7px;right:15px;margin:0 5px 0 0}#spiderboprt a,#spiderboprt em{height:23px;line-height:23px;float:left;background:url(http://l.bst.126.net/rsc/img/control/operatenew24.png?005) no-repeat}#spiderboprt a{padding:0 2px 0 0;cursor:pointer;text-decoration:none;background-position:right 0}#spiderboprt a:hover em,#spiderboprt em{color:#fff;padding:0 5px 0 26px;white-space:nowrap;font-weight:400;font-style:normal}#spiderboprt em{background-position:0 -750px}#spiderboprt a:hover em{background-position:0 -780px}";
+    var cssText = "#lofterspider{position:fixed;top:0;left:50%;width:100%;height:100%;background:rgba(229,229,229,.95);padding:0;margin:0 auto;font-size:16px;-webkit-transform:translateX(-50%);transform:translateX(-50%);z-index:9999999999999}#lofterspider p:first-child{position:absolute;left:0;top:0;width:100%;padding:10px;background:#fff;box-shadow:0 0 4px rgba(0,0,0,.2);text-align:center;font-size:1.5em;color:#555}#spiderclose{position:absolute;right:12px;padding:10px 0 10px 16px;font-size:1.5em;border-left:1px solid #555;font-weight:700;color:#555}#lofterspider ul{position:relative;top:15%}#lofterspider ul li{width:20%;text-align:center;float:left;padding-bottom:5px}#lofterspider ul li img{width:90%}#lofterspider ul li img:hover{opacity:.6}#lofterspider ul li p{color:#555}#lofterspider ul li p a{margin:auto 10px;color:#673ab7}#spiderboprt{position:fixed;top:7px;right:15px;margin:0 5px 0 0}#spiderboprt a,#spiderboprt em{height:23px;line-height:23px;float:left;background:url(//l.bst.126.net/rsc/img/control/operatenew24.png?005) no-repeat}#spiderboprt a{padding:0 2px 0 0;cursor:pointer;text-decoration:none;background-position:right 0}#spiderboprt a:hover em,#spiderboprt em{color:#fff;padding:0 5px 0 26px;white-space:nowrap;font-weight:400;font-style:normal}#spiderboprt em{background-position:0 -750px}#spiderboprt a:hover em{background-position:0 -780px}";
     css.innerHTML = cssText;
     if (document.getElementById("spidercss") == undefined) {
         document.getElementsByTagName("head")[0].appendChild(css);
