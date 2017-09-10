@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Lofter(乐乎)原图查看下载
 // @namespace    LofterSpider
-// @version      0.1.1
+// @homepage     https://github.com/LanlingKira/lofter
+// @version      0.1.2
 // @description  下载lofter上的超清原图，prprprpr
 // @author       兰陵
-// @match        http*://*.lofter.com/post/*
+// @match        *://*.lofter.com/post/*
 // @run-at       document-end
 // @grant        GM_xmlhttpRequest
 // @connect      *
@@ -14,7 +15,7 @@
     var css = document.createElement("style");
     css.type = "text/css";
     css.id = "spidercss";
-    var cssText = "#lofterspider{position:fixed;top:0;left:50%;width:100%;height:100%;background:rgba(229,229,229,.95);padding:0;margin:0 auto;font-size:16px;-webkit-transform:translateX(-50%);transform:translateX(-50%);z-index:9999999999999}#lofterspider p:first-child{position:absolute;left:0;top:0;width:100%;padding:10px;background:#fff;box-shadow:0 0 4px rgba(0,0,0,.2);text-align:center;font-size:1.5em;color:#555}#spiderclose{position:absolute;right:12px;padding:10px 0 10px 16px;font-size:1.5em;border-left:1px solid #555;font-weight:700;color:#555}#lofterspider ul{position:relative;top:15%}#lofterspider ul li{width:20%;text-align:center;float:left;padding-bottom:5px}#lofterspider ul li img{width:90%}#lofterspider ul li img:hover{opacity:.6}#lofterspider ul li p{color:#555}#lofterspider ul li p a{margin:auto 10px;color:#673ab7}#spiderboprt{position:fixed;top:7px;right:15px;margin:0 5px 0 0}#spiderboprt a,#spiderboprt em{height:23px;line-height:23px;float:left;background:url(//l.bst.126.net/rsc/img/control/operatenew24.png?005) no-repeat}#spiderboprt a{padding:0 2px 0 0;cursor:pointer;text-decoration:none;background-position:right 0}#spiderboprt a:hover em,#spiderboprt em{color:#fff;padding:0 5px 0 26px;white-space:nowrap;font-weight:400;font-style:normal}#spiderboprt em{background-position:0 -750px}#spiderboprt a:hover em{background-position:0 -780px}";
+    var cssText = "#lofterspider{position:fixed;top:0;left:50%;width:100%;height:100%;background:rgba(229,229,229,.95);padding:0;margin:0 auto;font-size:16px;-ms-transform:translateX(-50%);-o-transform:translateX(-50%);-moz-transform:translateX(-50%);-webkit-transform:translateX(-50%);transform:translateX(-50%);z-index:9999999999999}#lofterspider p:first-child{position:absolute;left:0;top:0;width:100%;margin:0;padding:10px;background:#fff;box-shadow:0 0 4px rgba(0,0,0,.2);text-align:center;font-size:1.5em;color:#555}#spiderclose{position:absolute;right:12px;margin:0;padding:10px 0 10px 16px;font-size:1.5em;border-left:1px solid #555;font-weight:700;color:#555}#lofterspider ul{position:relative;top:15%;margin:0;padding:0}#lofterspider ul li{width:20%;text-align:center;float:left;padding-bottom:5px;list-style:none}#lofterspider ul li img{width:90%}#lofterspider ul li img:hover{opacity:.6}#lofterspider ul li p{color:#555;margin:0}#lofterspider ul li p a{margin:auto 10px;color:#673ab7;text-decoration:none}#spiderboprt{position:fixed;top:7px;right:15px;margin:0 5px 0 0;z-index:9999999999999}#spiderboprt a,#spiderboprt em{height:23px;line-height:23px;float:left;background:url(//l.bst.126.net/rsc/img/control/operatenew24.png?005) no-repeat}#spiderboprt a{padding:0 2px 0 0;cursor:pointer;text-decoration:none;background-position:right 0}#spiderboprt a:hover em,#spiderboprt em{color:#fff;padding:0 5px 0 26px;white-space:nowrap;font-weight:400;font-style:normal}#spiderboprt em{background-position:0 -750px;font-size:12px}#spiderboprt a:hover{background-position:right -870px}#spiderboprt a:hover em{background-position:0 -780px}";
     css.innerHTML = cssText;
     if (document.getElementById("spidercss") == undefined) {
         document.getElementsByTagName("head")[0].appendChild(css);
@@ -38,7 +39,7 @@
         pElement.id = "lofterspider";
         document.body.appendChild(pElement);
         var LofterSpider = document.getElementById("lofterspider");
-        LofterSpider.innerHTML = "<p>" + document.title + '</p><p id="spiderclose">X</p><ul>' + k + '</ul><p style="position:fixed;bottom:0;right:10px;color:#555"><i>请遵守作品协议</i></p>';
+        LofterSpider.innerHTML = "<p>" + document.title + '</p><p id="spiderclose">X</p><ul>' + k + '</ul><p style="position:fixed;bottom:0;right:10px;color:#555;margin:0;height:24px"><i>请遵守作品协议</i></p>';
         document.getElementsByTagName("body")[0].style.overflow = "hidden";
     }
     function Close() {
@@ -101,8 +102,9 @@
     document.getElementById("spiderboprt").onclick = function() {
         Lofter();
     };
-    document.onkeydown = function() {
-        if (document.getElementById("lofterspider") != undefined && event.keyCode == 27) {
+    document.onkeydown = function(e) {
+        e = e || event;
+        if (document.getElementById("lofterspider") != undefined && e.keyCode == 27) {
             Close();
         }
     };
